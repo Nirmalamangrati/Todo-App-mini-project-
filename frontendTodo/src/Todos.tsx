@@ -37,7 +37,9 @@ const Todos = () => {
 
   return (
     <div className="bg-gray-300 h-screen flex flex-col items-center p-4">
-      <h1 className="mt-4 text-4xl font-bold shadow">Todo App</h1>
+      <h1 className="mt-4 text-4xl font-bold shadow  animate-spin ">
+        Todo App
+      </h1>
 
       {/* Input Box */}
       <div className="mt-10 w-full max-w-md flex gap-4">
