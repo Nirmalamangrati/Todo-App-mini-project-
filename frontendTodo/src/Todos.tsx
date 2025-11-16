@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 const Todos = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState<string[]>([]);
   const [editIndex, setEditIndex] = useState<number | null>(null);
+  //Fetch from backend
+  useEffect(() => {
+    const getTodos = async () => {
+      try {
+        const res = await fetch("http://localhost:8000/todos");
+        const data = await res.json();
+        setTodos(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getTodos();
+  }, []);
 
   // Add or update todo
   const handleAddTodo = () => {
