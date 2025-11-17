@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const usermodel = require("./usermodel"); 
+const usermodel = require("./usermodel");
 const app = express();
 const PORT = 8000;
 
@@ -29,7 +29,24 @@ app.post("/todos", (req, res) => {
 
   res.status(201).json(newTodo);
 });
+// UPDATE a todo
+app.put("/todos/:id", (req, res) => {
+  const { id } = req.params;
+  const { task } = req.body;
 
+  const index = todos.findIndex((t) => t.id == id);
+  if (index === -1) return res.status(404).json({ message: "Not found" });
+
+  todos[index].task = task;
+  res.json(todos[index]);
+});
+
+// DELETE a todo
+app.delete("/todos/:id", (req, res) => {
+  const { id } = req.params;
+  todos = todos.filter((t) => t.id != id);
+  res.json({ message: "Deleted" });
+});
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );

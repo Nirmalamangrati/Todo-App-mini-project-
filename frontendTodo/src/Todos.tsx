@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+
+interface Todos {
+  _id: string;
+  text: string;
+}
 const Todos = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState<string[]>([]);
